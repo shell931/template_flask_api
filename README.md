@@ -36,7 +36,7 @@ RUN chmod +x gunicorn_starter.sh
 ENTRYPOINT [ "./gunicorn_starter.sh"]
 ```
 
-### SETUP DOCKE-COMPOSE
+### SETUP DOCKER-COMPOSE
 ```bash
 version: '3.7'
 services:
