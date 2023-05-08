@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  my-awesome-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: my-awesome-api
+    ports:
+      - 4000:4000
+    environment:
+      MI_ENV_VARIABLE: "example"
