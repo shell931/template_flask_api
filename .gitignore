@@ -435,3 +435,4 @@ pip-selfcheck.json
 
 ### VisualStudioCode ###
 .vscode/*
+.DS_Store
