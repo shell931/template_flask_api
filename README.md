@@ -25,6 +25,47 @@ ENDPOINT | METH
 `/v1/package/script-name/` | `POST`
 
 
+### SETUP DOCKERFILE
+```bash
+FROM python:3.11
+WORKDIR /code
+COPY . /code
+RUN pip3 install -r requirements.txt
+EXPOSE 4000
+RUN chmod +x gunicorn_starter.sh
+ENTRYPOINT [ "./gunicorn_starter.sh"]
+```
+
+### SETUP DOCKE-COMPOSE
+```bash
+version: '3.7'
+services:
+  my-awesome-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: my-awesome-api
+    ports:
+      - 4000:4000
+    environment:
+      MI_ENV_VARIABLE: "example"
+```
+
+### SETUP GUNICORN
+```bash
+#!/bin/sh
+gunicorn --workers 2 --threads 2 -b 0.0.0.0:4000 main:app
+```
+
+### DEPLOY DOCKER CONTAINER
+```bash
+# to build
+docker-compose up --build
+# To run with daemon up
+docker-compose up -d
+```
+
 # ACKNOWLEDGMENTS
 
 Thanks to all Dyner24 team.
